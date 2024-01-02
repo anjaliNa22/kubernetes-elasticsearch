@@ -1,0 +1,18 @@
+# elasticsearch-backup-job.yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: elasticsearch-backup
+spec:
+  schedule: "0 0 * * *"  # Run the job daily at midnight
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: elasticsearch-backup
+            image: curlimages/curl
+            command: ["/bin/sh", "-c"]
+            args:
+            - "curl -X PUT 'http://elasticsearch:9200/_snapshot/my-snapshot-repo/$(date +%Y%m%d%H%M%S)?wait_for_completion=true'"
+          restartPolicy: OnFailure

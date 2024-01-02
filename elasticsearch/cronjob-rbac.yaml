@@ -1,0 +1,50 @@
+# cronjob-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: system:cronjob
+rules:
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  verbs:
+  - '*'
+
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - list
+  - watch
+
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  verbs:
+  - get
+
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  verbs:
+  - list
+  - watch
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: system:cronjob
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:cronjob
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: default

@@ -1,0 +1,50 @@
+# elasticsearch-values.yaml
+replicaCount: 1
+image:
+  repository: docker.elastic.co/elasticsearch/elasticsearch
+  tag: 7.10.0
+  pullPolicy: IfNotPresent
+resources: {}
+service:
+  annotations: {}
+  enabled: true
+  name: elasticsearch
+  type: ClusterIP
+  port: 9200
+  nodePort: null
+  loadBalancerIP: null
+  loadBalancerSourceRanges: []
+ingress:
+  enabled: false
+  className: ""
+  name: ""
+  nginx:
+    ingressClassName: ""
+    ingressClass: ""
+masterService:
+  annotations: {}
+  enabled: false
+  name: ""
+  type: ClusterIP
+  port: 9200
+  nodePort: null
+  loadBalancerIP: null
+  loadBalancerSourceRanges: []
+data:
+  persistence:
+    enabled: false
+    accessMode: ReadWriteOnce
+    size: 8Gi
+    annotations: {}
+    storageClass: ""
+    subPath: ""
+elasticsearch:
+  snapshot:
+    repositories:
+      - name: my-snapshot-repo
+        type: fs
+        settings:
+          location: F:\elasticsearch-snapshots
+
+
+
