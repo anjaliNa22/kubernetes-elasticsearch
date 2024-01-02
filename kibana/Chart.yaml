@@ -1,0 +1,5 @@
+# Example Chart.yaml for Kibana
+apiVersion: v2
+name: kibana
+description: Kibana Helm chart
+version: 0.1.0

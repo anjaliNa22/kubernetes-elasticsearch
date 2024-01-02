@@ -1,0 +1,22 @@
+# kibana-values.yaml
+replicaCount: 1
+image:
+  repository: docker.elastic.co/kibana/kibana
+  tag: 7.10.0
+  pullPolicy: IfNotPresent
+service:
+  annotations: {}
+  enabled: true
+  name: kibana
+  type: ClusterIP
+  port: 5601
+  nodePort: null
+  loadBalancerIP: null
+  loadBalancerSourceRanges: []
+ingress:
+  enabled: false
+  className: ""
+  name: ""
+  nginx:
+    ingressClassName: ""
+    ingressClass: ""
